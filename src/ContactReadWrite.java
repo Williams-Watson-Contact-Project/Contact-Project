@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -70,6 +71,8 @@ public class ContactReadWrite {
                     break;
                 }
             }
+        }else {
+            System.out.println("Could not find that contact information!");
         }
     }
 
@@ -77,7 +80,7 @@ public class ContactReadWrite {
         if(name.contains(" ")){
             Path contactsPath = Paths.get(directory, filename);
             List<String> contactList = Files.readAllLines(contactsPath);
-            List<String> newContactList = Files.readAllLines(contactsPath);
+            List<String> newContactList = new ArrayList<>();
 
             for(String listString : contactList){
                 if(!listString.contains(name)){
@@ -85,6 +88,8 @@ public class ContactReadWrite {
                 }
             }
             Files.write(Paths.get(directory, filename), newContactList);
+        } else {
+            System.out.println("Could not Delete contact information!");
         }
     }
 
