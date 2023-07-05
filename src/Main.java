@@ -12,7 +12,7 @@ public class Main {
         }
 
         for(int i = 0; i < 5; i++){
-            Person p = new Person("John" + i*5, "Doe", "512-512-5123");
+            Contact p = new Contact("John" + i*5, "Doe", "512-512-5123");
             try {
                 contactRW.writeNewContactInfo(p);
             } catch (IOException e) {
