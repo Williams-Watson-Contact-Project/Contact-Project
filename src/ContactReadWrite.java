@@ -11,6 +11,9 @@ public class ContactReadWrite {
     private final String directory;
     private final String filename;
 
+    /**
+     * Default constructor for Contact Read and Write Class
+     */
     public ContactReadWrite(){
         this.directory = "data";
         this.filename = "contacts.txt";
@@ -21,6 +24,11 @@ public class ContactReadWrite {
         }
     }
 
+    /**
+     * Checks if File and its path exists.
+     * If they do not exist, create them.
+     * @throws IOException
+     */
     private void checkAndSetFileAndDirector() throws IOException {
         Path dataDirectory = Paths.get(directory);
         Path dataFile = Paths.get(directory, filename);
@@ -34,6 +42,11 @@ public class ContactReadWrite {
         }
     }
 
+    /**
+     * Grab all contacts inside the contacts.txt file
+     * and display them to the console.
+     * @throws IOException
+     */
     public void displayAllContacts() throws IOException {
         Path contactsPath = Paths.get(directory, filename);
         List<String> contactList = Files.readAllLines(contactsPath);
@@ -45,6 +58,13 @@ public class ContactReadWrite {
         }
     }
 
+    /**
+     * Returns true or false, depending on if a set name is found inside
+     * the contacts.txt file.
+     * @param fullName
+     * @return
+     * @throws IOException
+     */
     public boolean checkIfContactExists(String fullName) throws IOException {
         boolean nameExits = false;
         Path contactsPath = Paths.get(directory, filename);
@@ -60,6 +80,12 @@ public class ContactReadWrite {
         return nameExits;
     }
 
+    /**
+     * Display a single contact if it is contained
+     * inside the contacts.txt file
+     * @param name
+     * @throws IOException
+     */
     public void displayContactByName(String name) throws IOException {
         if(name.contains(" ")){
             Path contactsPath = Paths.get(directory, filename);
@@ -76,6 +102,13 @@ public class ContactReadWrite {
         }
     }
 
+    /**
+     * Removes a contact from the contacts.txt file if that contact name
+     * exists. Does this by created a new contactList and only adding
+     * the contacts that do not match the name specified by user.
+     * @param name
+     * @throws IOException
+     */
     public void deleteContactByName(String name) throws IOException {
         if(name.contains(" ")){
             Path contactsPath = Paths.get(directory, filename);
@@ -87,17 +120,23 @@ public class ContactReadWrite {
                     newContactList.add(listString);
                 }
             }
-            Files.write(Paths.get(directory, filename), newContactList);
+            Files.write(contactsPath, newContactList);
         } else {
             System.out.println("Could not Delete contact information!");
         }
     }
 
-    public void writeNewContactInfo(Person newPerson) throws IOException {
-        if(!checkIfContactExists(newPerson.getFullName())){
+    /**
+     * Adds a new contact to the existing contacts.txt file, so long
+     * as that contact name does not exist already.
+     * @param newContact
+     * @throws IOException
+     */
+    public void writeNewContactInfo(Contact newContact) throws IOException {
+        if(!checkIfContactExists(newContact.getFullName())){
             Files.write(
                     Paths.get(directory, filename),
-                    Arrays.asList(newPerson.getContact()), // list with one item
+                    Arrays.asList(newContact.getContact()), // list with one item
                     StandardOpenOption.APPEND
             );
         } else {
