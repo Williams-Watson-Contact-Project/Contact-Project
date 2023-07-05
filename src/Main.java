@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class Main {
 
-    private static ContactReadWrite contactRW = new ContactReadWrite();
-    private static Input input= new Input();
+    private static final ContactReadWrite contactRW = new ContactReadWrite();
+    private static final Input input= new Input();
 
     /**
      * Asking user to insert number 1-5.

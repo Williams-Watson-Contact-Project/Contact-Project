@@ -1,9 +1,9 @@
 public class Contact {
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
-    private Phone phone;
+    private final Phone phone;
 
     /**
      * Constructor of a contact with a first and last name and number that passes it in
