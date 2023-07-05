@@ -1,4 +1,4 @@
-public class Person {
+public class Contact {
 
     private String firstName;
     private String lastName;
@@ -6,7 +6,7 @@ public class Person {
     private Phone phone;
 
     //Constructor of a person with a name and last number with a number that passes it in
-    public Person(String firstName, String lastName, String number) {
+    public Contact(String firstName, String lastName, String number) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = new Phone(number);
