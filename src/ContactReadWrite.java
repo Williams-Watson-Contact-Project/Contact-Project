@@ -51,10 +51,10 @@ public class ContactReadWrite {
         Path contactsPath = Paths.get(directory, filename);
         List<String> contactList = Files.readAllLines(contactsPath);
 
-        System.out.printf("%3s| %-15s | %12s |%n"," ", "Name", "Number");
+        System.out.printf("| %-15s | %-12s |%n","Name", "Number");
 
         for (int i = 0; i < contactList.size(); i += 1) {
-            System.out.println((i + 1) + ": " + contactList.get(i));
+            System.out.println(contactList.get(i));
         }
     }
 
@@ -92,7 +92,7 @@ public class ContactReadWrite {
             List<String> contactList = Files.readAllLines(contactsPath);
 
             for(String listString : contactList){
-                if(listString.contains(name)){
+                if(listString.toLowerCase().contains(name.toLowerCase())){
                     System.out.println(listString);
                     break;
                 }
