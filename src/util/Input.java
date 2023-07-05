@@ -43,8 +43,11 @@ public class Input {
     public int getInt(int min, int max){
         int userInt = 0;
         do {
-            System.out.printf("Enter a number between %d and %d\n", min, max);
+            System.out.printf("Enter a option between %d and %d\n", min, max);
             userInt = getInt();
+            if (userInt > max || userInt < min) {
+                System.out.println("Sorry,input is out of range.");
+            }
         }while(userInt > max || userInt < min);
 
         return userInt;
